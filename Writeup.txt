@@ -1,0 +1,37 @@
+Assignment Report: Image Convolution using Multi-threading
+Introduction
+This report presents the implementation and performance analysis of a multi-threaded image convolution program. The primary objective of the assignment was to parallelize the convolution operation on an image using pthreads (POSIX threads) in C++. The code aims to enhance the execution time of the convolution by dividing the workload among multiple threads.
+
+Implementation Details
+Code Overview
+The implementation consists of the following components:
+
+applyKernel Function: This function is responsible for applying a convolution kernel to the input image. It divides the image into segments, assigns each segment to a thread, and synchronizes their execution using a mutex.
+
+Input Handling: The program reads the input image and convolution mask from files specified in the command-line arguments.
+
+Thread Creation and Joining: Threads are created using pthread_create, and their execution is synchronized using pthread_join in the main function.
+
+Synchronization Mechanism
+The code utilizes a mutex (pthread_mutex_t) and a synchronization flag (flag_Sync) to coordinate the output writing phase among threads. The mutex ensures that only one thread at a time writes to the output file.
+
+Performance Analysis
+Experimental Setup
+Test Image: The program was tested with various input images of different sizes.
+
+Convolution Mask: Different convolution masks were used, and their sizes varied to observe the impact on performance.
+
+Thread Count: The number of threads was a parameter provided through command-line arguments, allowing for experimentation with different thread counts.
+
+Results
+The performance was evaluated based on the execution time and the correctness of the convolution operation. The results demonstrated a reduction in execution time with an increasing number of threads, up to a certain point. Beyond that point, diminishing returns were observed.
+
+Conclusion
+The assignment successfully implemented a multi-threaded image convolution program using pthreads in C++. The use of parallelism improved the overall performance, especially for larger images and convolution masks. The synchronization mechanism ensured the correct writing of the output to the file.
+
+Recommendations and Future Work
+Dynamic Thread Pool: Consider implementing a dynamic thread pool to manage and distribute tasks efficiently.
+
+Optimizations: Explore additional optimizations for further performance improvements.
+
+Error Handling: Enhance the code with robust error handling for better resilience.
